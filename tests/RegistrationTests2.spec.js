@@ -5,7 +5,7 @@ test.describe('Registration Form Validation', () => {
     await page.goto('/');
     await page.getByRole('button', { name: 'Sign up' }).click();
   });
-  // Test examples without Page object pattern
+  // Save this file with test examples without Page object pattern
   const selectors = {
     nameInput: '#signupName',
     lastNameInput: '#signupLastName',
