@@ -6,6 +6,7 @@ import generateTestEmail from '../tests/utils/randomGenerator';
 test.describe('Registration Form Validation', () => {
     let loginPage;
     let registrationPage;
+    const BORDER_COLOR_INVALID = 'rgb(220, 53, 69)';
 
     test.beforeEach(async ({ page }) => {
         loginPage = new LoginPage(page);
@@ -29,7 +30,7 @@ test.describe('Registration Form Validation', () => {
 
             await expect.soft(registrationPage.isRegisterButtonDisabled()).toBeTruthy();
             await expect.soft(registrationPage.expectFieldToHaveErrorMessage(errorMessage)).resolves.not.toThrow();
-            await expect.soft(registrationPage.expectFieldToHaveBorderColor(field, 'rgb(220, 53, 69)')).resolves.not.toThrow();
+            await expect.soft(registrationPage.expectFieldToHaveBorderColor(field, BORDER_COLOR_INVALID)).resolves.not.toThrow();
         }
     });
 
@@ -39,12 +40,12 @@ test.describe('Registration Form Validation', () => {
 
         await expect.soft(registrationPage.isRegisterButtonDisabled()).toBeTruthy();
         await expect.soft(registrationPage.expectFieldToHaveErrorMessage('Name has to be from 2 to 20 characters long')).resolves.not.toThrow();
-        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.nameInput, 'rgb(220, 53, 69)')).resolves.not.toThrow();
+        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.nameInput, BORDER_COLOR_INVALID)).resolves.not.toThrow();
 
         await registrationPage.fillName('A@#');
         await expect.soft(registrationPage.isRegisterButtonDisabled()).toBeTruthy();
         await expect.soft(registrationPage.expectFieldToHaveErrorMessage('Name is invalid')).resolves.not.toThrow();
-        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.nameInput, 'rgb(220, 53, 69)')).resolves.not.toThrow();
+        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.nameInput, BORDER_COLOR_INVALID)).resolves.not.toThrow();
     });
 
     test('Last name field validation', async () => {
@@ -53,12 +54,12 @@ test.describe('Registration Form Validation', () => {
 
         await expect.soft(registrationPage.isRegisterButtonDisabled()).toBeTruthy();
         await expect.soft(registrationPage.expectFieldToHaveErrorMessage('Last name has to be from 2 to 20 characters long')).resolves.not.toThrow();
-        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.lastNameInput, 'rgb(220, 53, 69)')).resolves.not.toThrow();
+        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.lastNameInput, BORDER_COLOR_INVALID)).resolves.not.toThrow();
 
         await registrationPage.fillLastName('A@#');
         await expect.soft(registrationPage.isRegisterButtonDisabled()).toBeTruthy();
         await expect.soft(registrationPage.expectFieldToHaveErrorMessage('Last name is invalid')).resolves.not.toThrow();
-        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.lastNameInput, 'rgb(220, 53, 69)')).resolves.not.toThrow();
+        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.lastNameInput, BORDER_COLOR_INVALID)).resolves.not.toThrow();
     });
 
     test('Email field validation', async () => {
@@ -67,7 +68,7 @@ test.describe('Registration Form Validation', () => {
 
         await expect.soft(registrationPage.isRegisterButtonDisabled()).toBeTruthy();
         await expect.soft(registrationPage.expectFieldToHaveErrorMessage('Email is incorrect')).resolves.not.toThrow();
-        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.emailInput, 'rgb(220, 53, 69)')).resolves.not.toThrow();
+        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.emailInput, BORDER_COLOR_INVALID)).resolves.not.toThrow();
     });
 
     test('Password field validation', async () => {
@@ -76,14 +77,14 @@ test.describe('Registration Form Validation', () => {
 
         await expect.soft(registrationPage.isRegisterButtonDisabled()).toBeTruthy();
         await expect.soft(registrationPage.expectFieldToHaveErrorMessage('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter')).resolves.not.toThrow();
-        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.passwordInput, 'rgb(220, 53, 69)')).resolves.not.toThrow();
+        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.passwordInput, BORDER_COLOR_INVALID)).resolves.not.toThrow();
 
         await registrationPage.fillPassword('12345678');
         await registrationPage.clickFieldAndBlur(registrationPage.repeatPasswordInput);
 
         await expect.soft(registrationPage.isRegisterButtonDisabled()).toBeTruthy();
         await expect.soft(registrationPage.expectFieldToHaveErrorMessage('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter')).resolves.not.toThrow();
-        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.repeatPasswordInput, 'rgb(220, 53, 69)')).resolves.not.toThrow();
+        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.repeatPasswordInput, BORDER_COLOR_INVALID)).resolves.not.toThrow();
     });
 
     test('Repeat password field validation', async () => {
@@ -93,7 +94,7 @@ test.describe('Registration Form Validation', () => {
 
         await expect.soft(registrationPage.isRegisterButtonDisabled()).toBeTruthy();
         await expect.soft(registrationPage.expectFieldToHaveErrorMessage('Passwords do not match')).resolves.not.toThrow();
-        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.repeatPasswordInput, 'rgb(220, 53, 69)')).resolves.not.toThrow();
+        await expect.soft(registrationPage.expectFieldToHaveBorderColor(registrationPage.repeatPasswordInput, BORDER_COLOR_INVALID)).resolves.not.toThrow();
     });
 
     test('Successful registration', async () => {
