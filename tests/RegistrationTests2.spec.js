@@ -5,7 +5,7 @@ test.describe('Registration Form Validation', () => {
     await page.goto('/');
     await page.getByRole('button', { name: 'Sign up' }).click();
   });
-
+  // Test examples without Page object pattern
   const selectors = {
     nameInput: '#signupName',
     lastNameInput: '#signupLastName',
@@ -59,68 +59,4 @@ test.describe('Registration Form Validation', () => {
     await expect(page.locator(selectors.registerBtn)).toBeDisabled();
     await expect(page.locator('text=Name is invalid')).toBeVisible();
   });
-
-  //   test('Last name field validation', async ({ page }) => {
-  //     const lastName = page.locator(selectors.lastName);
-  //     await lastName.fill(' ');
-  //     await page.click(selectors.registerBtn);
-  //     await expect(page.locator('text=Last name is required')).toBeVisible();
-
-  //     await lastName.fill('B');
-  //     await page.click(selectors.registerBtn);
-  //     await expect(page.locator('text=Name has to be from 2 to 20 characters long')).toBeVisible();
-
-  //     await lastName.fill('B#%');
-  //     await page.click(selectors.registerBtn);
-  //     await expect(page.locator('text=Last name is invalid')).toBeVisible();
-  //   });
-
-  //   test('Email validation', async ({ page }) => {
-  //     const email = page.locator(selectors.email);
-  //     await email.fill('');
-  //     await page.click(selectors.registerBtn);
-  //     await expect(page.locator('text=Email required')).toBeVisible();
-
-  //     await email.fill('invalid-email');
-  //     await page.click(selectors.registerBtn);
-  //     await expect(page.locator('text=Email is incorrect')).toBeVisible();
-  //   });
-
-  //   test('Password field validation', async ({ page }) => {
-  //     const password = page.locator(selectors.password);
-  //     await password.fill('');
-  //     await page.click(selectors.registerBtn);
-  //     await expect(page.locator('text=Password required')).toBeVisible();
-
-  //     await password.fill('short');
-  //     await page.click(selectors.registerBtn);
-  //     await expect(page.locator('text=Password has to be from 8 to 15 characters long')).toBeVisible();
-
-  //     await password.fill('alllowercase1');
-  //     await page.click(selectors.registerBtn);
-  //     await expect(page.locator('text=Password has to be from 8 to 15 characters long')).toBeVisible();
-
-  //     await password.fill('ValidPass1');
-  //     await expect(password).toHaveValue('ValidPass1');
-  //   });
-
-  //   test('Repeat password validation', async ({ page }) => {
-  //     await page.fill(selectors.password, 'ValidPass1');
-  //     await page.fill(selectors.repeatPassword, 'OtherPass1');
-  //     await page.click(selectors.registerBtn);
-  //     await expect(page.locator('text=Password do not match')).toBeVisible();
-
-  //     await page.fill(selectors.repeatPassword, '');
-  //     await page.click(selectors.registerBtn);
-  //     await expect(page.locator('text=Re-enter password required')).toBeVisible();
-  //   });
-
-  //   test('Valid data enables Register button', async ({ page }) => {
-  //     await page.fill(selectors.name, 'John');
-  //     await page.fill(selectors.lastName, 'Doe');
-  //     await page.fill(selectors.email, `john.doe${Date.now()}@example.com`);
-  //     await page.fill(selectors.password, 'Password1');
-  //     await page.fill(selectors.repeatPassword, 'Password1');
-  //     await expect(page.locator(selectors.registerBtn)).toBeEnabled();
-  //   });
 });
