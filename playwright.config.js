@@ -1,5 +1,7 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export default defineConfig({
   testDir: './tests',
@@ -9,7 +11,11 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'https://guest:welcome2qauto@qauto.forstudy.space/',
+    baseURL: process.env.PLAYWRIGHT_BASE_URL,
+    httpCredentials: {
+      username: process.env.PLAYWRIGHT_USERNAME || '',
+      password: process.env.PLAYWRIGHT_PASSWORD || '',
+    },
     trace: 'on-first-retry',
     headless: true,
   },
