@@ -9,7 +9,10 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  reporter: [
+    ['list'],
+    ['allure-playwright']
+  ],
   use: {
     baseURL: process.env.PLAYWRIGHT_BASE_URL,
     httpCredentials: {
@@ -23,6 +26,7 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      testMatch: ['tests/RegistrationTests2.spec.js', 'tests/RegistrationTests.spec.js']
     }
   ]
 });

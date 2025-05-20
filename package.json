@@ -2,7 +2,12 @@
   "name": "playwrightjs",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+  "test": "npx playwright test",
+  "allure:generate": "npx allure generate ./allure-results --clean -o ./allure-report",
+  "allure:open": "npx allure open ./allure-report",
+  "allure:report": "npm run allure:generate && npm run allure:open"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Alina-Sakidon/PlaywrightJs.git"
@@ -17,7 +22,8 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.52.0",
-    "@types/node": "^22.15.3"
+    "@types/node": "^22.15.3",
+    "allure-playwright": "^3.2.2"
   },
   "dependencies": {
     "dotenv": "^16.5.0"
